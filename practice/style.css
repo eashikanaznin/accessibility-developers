@@ -1,0 +1,26 @@
+body {
+  background-color: grey;
+}
+a:focus {
+  outline: 3px solid green;
+}
+.section {
+  background-color: #ffffff;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.section a {
+  text-decoration: underline;
+  color: maroon;
+}
+
+.image-link img {
+  border-bottom: 1px solid black;
+}
+
+.image-link img:hover {
+  border-bottom: 1px solid lime;
+}
