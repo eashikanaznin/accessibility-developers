@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  /* Light grey background */
+}
+
+.section {
+  height: 400px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.low-contrast {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: underline;
+  /* No underline on links */
+}
+
+*:focus {
+  outline: 2px solid maroon;
+}
+
+.section a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.image-link img {
+  width: 150px;
+  height: 200px;
+  padding: 5px;
+  border-bottom: 2px solid red;
+
+}
+.image-link img:hover {
+  border-bottom: 2px solid gold;
+}

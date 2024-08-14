@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send Us an Email</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+
+      fieldset {
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+
+      legend {
+        font-weight: bold;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      input[type="radio"] {
+        margin-right: 5px;
+      }
+
+      .required {
+        color: red;
+        margin-left: 5px;
+      }
+
+      small {
+        display: block;
+        margin-top: -10px;
+        margin-bottom: 10px;
+        color: #666;
+      }
+
+      .form-section {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form aria-labelledby="title">
+      <h1 id="title">Send Us an Email!</h1>
+      <div class="form-section">
+        <fieldset>
+          <legend>Personal Information</legend>
+          <label for="firstname">
+            First Name <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            required
+          />
+
+          <label for="lastname">Last Name</label>
+          <input type="text" id="lastname" name="lastname" />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" />
+          <small>11 digits, e.g., 01914101143</small>
+        </fieldset>
+      </div>
+      <div class="form-section">
+        <fieldset>
+          <legend>Gender</legend>
+          <label for="gender-male">
+            <input
+              type="radio"
+              id="gender-male"
+              name="gender"
+              value="male"
+              required
+            />
+            Male
+          </label>
+          <label for="gender-female">
+            <input
+              type="radio"
+              id="gender-female"
+              name="gender"
+              value="female"
+              required
+            />
+            Female
+          </label>
+          <label for="gender-other">
+            <input
+              type="radio"
+              id="gender-other"
+              name="gender"
+              value="other"
+              required
+            />
+            Other
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="form-section">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+        <small>Type your message</small>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
