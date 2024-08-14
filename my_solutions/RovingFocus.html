@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Radio Button with Roving Focus</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .group-label {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .radio-button {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+        padding-left: 35px;
+        width: 10rem;
+      }
+
+      .radio-button::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #4caf50;
+        border-radius: 50%;
+        background: white;
+      }
+
+      .radio-button[aria-checked="true"]::before {
+        background: #4caf50;
+      }
+
+      .radio-button:focus {
+        outline: none;
+        border-color: #666;
+      }
+
+      .radio-button[aria-checked="true"] {
+        border-color: #4caf50;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="radio-group" role="radiogroup" aria-labelledby="group-label">
+      <div id="group-label" class="group-label">Select an option:</div>
+      <div
+        class="radio-button"
+        role="radio"
+        aria-checked="false"
+        tabindex="0"
+        data-value="option1"
+      >
+        Option 1
+      </div>
+      <div
+        class="radio-button"
+        role="radio"
+        aria-checked="false"
+        tabindex="-1"
+        data-value="option2"
+      >
+        Option 2
+      </div>
+      <div
+        class="radio-button"
+        role="radio"
+        aria-checked="false"
+        tabindex="-1"
+        data-value="option3"
+      >
+        Option 3
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const radioButtons = document.querySelectorAll(".radio-button");
+
+      let selectedIndex = -1; // No option selected initially
+
+      radioButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+          updateRadioSelection(index);
+        });
+
+        button.addEventListener("keydown", (event) => {
+          switch (event.key) {
+            case "ArrowDown":
+            case "ArrowRight":
+              event.preventDefault();
+              selectedIndex = (selectedIndex + 1) % radioButtons.length;
+              updateRadioSelection(selectedIndex);
+              break;
+            case "ArrowUp":
+            case "ArrowLeft":
+              event.preventDefault();
+              selectedIndex =
+                (selectedIndex - 1 + radioButtons.length) % radioButtons.length;
+              updateRadioSelection(selectedIndex);
+              break;
+            case " ":
+            case "Enter":
+              event.preventDefault();
+              updateRadioSelection(index);
+              break;
+          }
+        });
+      });
+
+      function updateRadioSelection(newIndex) {
+        radioButtons.forEach((button, index) => {
+          button.setAttribute("aria-checked", "false");
+          button.setAttribute("tabindex", "-1");
+        });
+        if (newIndex !== -1) {
+          // Only set if an option is selected
+          radioButtons[newIndex].setAttribute("aria-checked", "true");
+          radioButtons[newIndex].setAttribute("tabindex", "0");
+          radioButtons[newIndex].focus();
+        }
+      }
+    });
+  </script>
+</html>

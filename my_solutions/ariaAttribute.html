@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility</title>
+    <script
+      src="https://kit.fontawesome.com/1812ede6f3.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div role="checkbox" aria-checked="false" tabindex="0">
+      Accept Terms and Conditions
+    </div>
+    Lebel versus aria lebel
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" />
+
+    <h2 id="search-heading">Search the site</h2>
+    <input
+      type="text"
+      aria-labelledby="search-heading"
+      placeholder="Type your query"
+    />
+
+    <button aria-label="Close">X</button>
+  </body>
+</html>

@@ -1,23 +1,31 @@
 # learnings
 
-> aria-hidden="true" to remove from the tree, ex. removing svg from the screen reader
-> use proper link with anchor tag, avoid #
-> always create your webpage in Grayscale
-> Use OL tag for ordered list items
-> Ensure proper lebel for icons
-> Create connection between fieldset and legends to Ensure proper Grouping
-> Color should not be solely used to convey information, its a part of WCAG level - A requirement
-> Placeholders Won't be readable by the screen readers, use labels instead
-> Links are useful to directly go to the main section of the page, It's a part of WCG category A requirements, ex. skip navigation [usually only shows when it is in focus].
-> <a> should not be used as button
-> Hamburger menu icon size should be 44\*44
-> Always mention Text over the icon, Since A lot of people might not be familiar with it. Text shouldn't be Capitalized.
-> Use area hidden attribute if we want to hide in icon from the accessible tree
-> According to WCAG, A category, eight keyboard focus should not be trapped in any particular section of A page
-> role='dialog' ARIA role should be used for accessible modals
-> Esc should close a modal
-> Enter Should close them the modal, if some meat is the last thing
-> space/enter On model button, should open the model
-> After closing the modal, the focus should go back to the last item that was in focus
-> Use display none or visibility hidden to hide the off-screen contents
-> The aria-label attribute provides an accessible name for the navigation landmark and The role="navigation" attribute is used to explicitly define an element as a navigation landmark. 
+> ARIA used to make unaccessible components accessible
+> WAI-ARIA With accessibility initiative by W3C
+> ARI provides three attributes roll states and properties
+> HTML > DOM Tree > Visual UI, JS can modify it > Accessibility tree > Assistive technology > User
+> label Element: Used with form controls where The aria-label attribute is used to provide an accessible name for an element that may not have a visible label. 
+> aria-lebelby: You win the level source is different
+> aria-describeby:  used for additional descriptive text
+> Roving focus : On the first element, if none of the option is checked Otherwise focus on the checked option
+> aria-live can be set to off (not accessible by assistive tech), polite (won't interrupt), or assertive (will interrupt)
+> hidden hides content from everyone, while aria-hidden hides content only from users relying on assistive technologies.
+> display none and hidden, wont be accessed by assistive tech, takes no space in UI, cant be clicked or focused.
+> opacity 0 , invisible but rendered, takes space, will be noticed by screen reader. 
+> visibility hidden:  invisible but rendered, takes space, will NOT be noticed by screen reader.
+> aria hidden, not noticed by Screen readers usually used with decorative items
+> aria-live: Announces dynamic content changes to screen readers
+> To maintain WCAG AA standard page font shoot adjust according to the zoom percentage
+> Always avoid horizontal Scrolling when the pain is zoomed
+> meta viewport tag Initial scale should be 1
+> Always avoid using max-scale = 1 (prevents zooming) And user-scalable=no
+> Use of grid , RM font size are recommended
+> WCAG AA standard is using the contrast ratio of at least 4.5:1
+> WCAG AA standard is using the contrast ratio of at least 7:1 (for text and images), 4.5:1 - for large texts
+> Use colored extension to check the contrast ratios and then check in the contrast checker.
+> touch target should be large enough
+> Instead of fixed width, height use relative with, or percentage like 80%
+> word-wrap, makes sure content remains in the area
+> avoid overflow hidden, since it crops content and doesnt provide scrolling
+> while using position absolute, provide a relative in the parent wrapper
+> use of flex properties is remoccanded

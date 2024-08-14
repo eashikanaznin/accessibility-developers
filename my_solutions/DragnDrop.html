@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessible Drag-and-Drop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f0f0f0;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    .draggable {
+      width: 150px;
+      height: 50px;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #000;
+      background-color: #f4f4f4;
+      cursor: grab;
+      text-align: center;
+      line-height: 30px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .droppable {
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+      padding: 10px;
+      border: 2px dashed #000;
+      background-color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Ensure aria-live region is visually hidden but accessible to screen readers */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Accessible Drag-and-Drop</h2>
+  <div class="draggable" draggable="true" tabindex="0" aria-grabbed="false" role="button" id="draggable">
+    Drag me
+  </div>
+  <div class="droppable" tabindex="0" aria-dropeffect="none" role="button" aria-labelledby="drop-instructions" id="droppable">
+    Drop here
+  </div>
+  <p id="drop-instructions" aria-live="polite" class="sr-only"></p>
+
+  <script>
+    const draggable = document.querySelector('.draggable');
+    const droppable = document.querySelector('.droppable');
+    const instructions = document.getElementById('drop-instructions');
+
+    draggable.addEventListener('dragstart', () => {
+      draggable.classList.add('dragging');
+      draggable.setAttribute('aria-grabbed', 'true');
+      droppable.setAttribute('aria-dropeffect', 'move');
+      instructions.textContent = "Dragging started. Use arrow keys to move the item.";
+    });
+
+    draggable.addEventListener('dragend', () => {
+      draggable.classList.remove('dragging');
+      draggable.setAttribute('aria-grabbed', 'false');
+      droppable.setAttribute('aria-dropeffect', 'none');
+      instructions.textContent = "Drag operation ended.";
+    });
+
+    droppable.addEventListener('dragover', (event) => {
+      event.preventDefault();
+    });
+
+    droppable.addEventListener('drop', () => {
+      droppable.appendChild(draggable);
+      instructions.textContent = "Item dropped successfully.";
+    });
+
+    // Keyboard support
+    draggable.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        draggable.setAttribute('aria-grabbed', 'true');
+        instructions.textContent = "Item grabbed. Use arrow keys to move to a drop target.";
+      }
+    });
+
+    droppable.addEventListener('keydown', (event) => {
+      if ((event.key === 'Enter' || event.key === ' ') && draggable.getAttribute('aria-grabbed') === 'true') {
+        event.preventDefault();
+        droppable.appendChild(draggable);
+        draggable.setAttribute('aria-grabbed', 'false');
+        instructions.textContent = "Item dropped successfully.";
+      }
+    });
+  </script>
+</body>
+
+</html>
